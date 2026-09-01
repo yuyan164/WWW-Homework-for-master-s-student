@@ -1,0 +1,170 @@
+/* css/register.css - 註冊頁面專屬樣式 */
+
+/* 1. 頁面置中設定 (原本缺少的部份) */
+.auth-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px; /* 避免手機版貼邊 */
+    margin: 0;
+}
+
+/* 2. 註冊卡片容器外觀 (原本缺少的部份) */
+.register-container {
+    background-color: var(--card-bg, #FFFFFF); /* 預設白色 */
+    width: 100%;
+    max-width: 500px; /* 比登入頁稍寬 */
+    padding: 2.5rem;
+    border-radius: 12px;
+    /* 柔和的大地色系陰影 */
+    box-shadow: 0 10px 25px rgba(142, 115, 91, 0.15); 
+    border-top: 6px solid var(--primary-color, #8E735B); /* 頂部裝飾條 */
+}
+
+/* 3. 返回首頁連結 */
+.back-home-link {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    color: var(--text-muted, #888);
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.back-home-link:hover {
+    color: var(--primary-color, #8E735B);
+}
+
+/* 4. 標題樣式 */
+.auth-container h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--text-main, #5D4D3F);
+    letter-spacing: 1px;
+}
+
+/* 5. 讓密碼欄位並排 (RWD設定) */
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+.half-width {
+    flex: 1;
+}
+@media (max-width: 480px) {
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+}
+
+/* 6. 表單間距 */
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+    color: var(--primary-color, #8E735B);
+}
+
+/* 輸入提示小字 */
+.input-hint {
+    font-size: 0.8rem;
+    color: var(--text-muted, #888);
+    margin-bottom: 6px;
+}
+
+/* 7. 密碼區塊與按鈕 */
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    background: transparent;
+    border: none;
+    color: var(--text-muted, #888);
+    font-size: 0.8rem;
+    cursor: pointer;
+    font-weight: 600;
+}
+.toggle-password:hover {
+    color: var(--primary-color, #8E735B);
+}
+
+/* 8. 圖片預覽區塊 (圓形頭貼) */
+.preview-box {
+    margin-top: 10px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--secondary-color, #D4C7B0);
+    background-color: #eee;
+}
+
+#preview-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 9. 底部連結 */
+.auth-footer {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--text-main, #5D4D3F);
+}
+
+.auth-footer a {
+    color: var(--accent-error, #C08261);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* 客製化上傳按鈕樣式 */
+
+.file-upload-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* 按鈕跟文字的距離 */
+    margin-bottom: 10px;
+}
+
+/* 假按鈕的樣式 (大地色系) */
+.custom-file-btn {
+    background-color: #EAE3D2; /* 淺亞麻色 */
+    color: #5D4D3F;            /* 深咖啡字 */
+    padding: 8px 16px;
+    border: 1px solid #D4C7B0;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    display: inline-block;
+    text-align: center;
+}
+
+.custom-file-btn:hover {
+    background-color: #D4C7B0; /* 懸停變深 */
+    border-color: #8E735B;
+    color: #4A3B2F;
+}
+
+/* 顯示檔名的文字樣式 */
+.file-chosen-text {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-style: italic;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 200px; /* 檔名太長會變成 ... */
+}

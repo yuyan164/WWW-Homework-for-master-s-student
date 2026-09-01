@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>註冊 - 校園資源預約系統</title>
+    <link rel="stylesheet" href="css/style.css?v=260206_1">
+    <link rel="stylesheet" href="css/register.css?v=260206_2">
+</head>
+<body class="auth-body" id="page-register"> <button id="lang-switch-btn" class="lang-switch">English</button>
+
+    <div class="auth-container register-container">
+        <a href="index.html" class="back-home-link" data-i18n="back_home">&larr; 返回首頁</a>
+
+        <h2 data-i18n="register_title">建立新帳號</h2>
+		<form id="registerForm" enctype="multipart/form-data" novalidate>
+            
+            <div class="form-group">
+                <label for="reg-username" data-i18n="label_username">用戶名稱</label>
+                <input type="text" id="reg-username" name="username" data-i18n-placeholder="placeholder_username" placeholder="設定您的顯示名稱" required>
+            </div>
+
+            <div class="form-group">
+                <label for="reg-email" data-i18n="label_email">電子郵件</label>
+                <input type="email" id="reg-email" name="email" data-i18n-placeholder="placeholder_email" placeholder="此將作為您的登入帳號" required autocomplete="email">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group half-width">
+                    <label for="reg-password" data-i18n="label_reg_password">設定密碼</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="reg-password" name="password" required>
+                        <button type="button" class="toggle-password" onclick="toggleRegPassword('reg-password', this)" data-i18n="toggle_show">顯示</button>
+                    </div>
+                </div>
+                <div class="form-group half-width">
+                    <label for="confirm-password" data-i18n="label_confirm_password">確認密碼</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="confirm-password" name="confirm_password" required>
+                        <button type="button" class="toggle-password" onclick="toggleRegPassword('confirm-password', this)" data-i18n="toggle_show">顯示</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group upload-group">
+				<label for="user-photo" data-i18n="label_photo">上傳大頭貼</label>
+				<p class="input-hint" data-i18n="hint_photo">支援格式：JPG, JPEG, PNG, GIF</p>
+				
+				<div class="file-upload-wrapper">
+					<label for="user-photo" class="custom-file-btn" data-i18n="btn_choose_file">選擇檔案</label>
+					
+					<span id="file-chosen-text" class="file-chosen-text" data-i18n="text_no_file">未選擇任何檔案</span>
+				</div>
+
+				<input type="file" id="user-photo" name="photo" accept=".jpg,.jpeg,.png,.gif" hidden>
+				
+				<div id="preview-box" class="preview-box" style="display: none;">
+					<img id="preview-img" src="#" alt="大頭貼預覽">
+				</div>
+			</div>
+
+            <div id="register-error" class="error-msg"></div>
+
+            <button type="submit" class="btn-primary" data-i18n="btn_register">註冊帳號</button>
+        </form>
+        <p class="auth-footer" data-i18n="link_has_account">已有帳號？ <a href="login.html">直接登入</a></p>
+    </div>
+
+    <script src="js/lang.js?v=260206_6"></script>
+    <script src="js/register.js?v=260206_4"></script>
+</body>
+</html>

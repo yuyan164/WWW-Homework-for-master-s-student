@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>登入 - 校園資源預約系統</title>
+    <link rel="stylesheet" href="css/style.css?v=260206_1">
+    <link rel="stylesheet" href="css/login.css?v=260206_1">
+</head>
+<body class="auth-body" id="page-login"> <button id="lang-switch-btn" class="lang-switch">English</button>
+
+    <div class="auth-container">
+        <a href="index.html" class="back-home-link" data-i18n="back_home">&larr; 返回首頁</a>
+
+        <h2 data-i18n="login_title">會員登入</h2>
+        <form id="loginForm" novalidate>
+            <div class="form-group">
+                <label for="email" data-i18n="label_email">電子郵件 (帳號)</label>
+                <input type="email" id="email" name="email" data-i18n-placeholder="placeholder_email" placeholder="請輸入 Email">
+            </div>
+            
+            <div class="form-group">
+                <label for="password" data-i18n="label_password">密碼</label>
+                <div class="password-wrapper">
+                    <input type="password" id="password" name="password" data-i18n-placeholder="placeholder_password" placeholder="請輸入密碼">
+                    <button type="button" class="toggle-password" id="togglePasswordBtn" data-i18n="toggle_show">顯示</button>
+                </div>
+            </div>
+
+            <div id="login-error" class="error-msg"></div>
+
+            <button type="submit" class="btn-primary" data-i18n="btn_login">登入</button>
+        </form>
+        <p class="auth-footer" data-i18n="link_no_account">還沒有帳號？ <a href="register.html">立即註冊</a></p>
+    </div>
+
+    <script src="js/lang.js?v=260206_1"></script> 
+    <script src="js/login.js?v=260206_4"></script>
+</body>
+</html>

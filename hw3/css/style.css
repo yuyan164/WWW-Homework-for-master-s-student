@@ -1,0 +1,134 @@
+/* css/style.css - 全域設計規範 (大地色系) */
+
+:root {
+    /* 色彩變數定義 - 方便未來統一修改 */
+    --bg-color: #F9F7F2;       /* 背景：米白色 */
+    --card-bg: #FFFFFF;        /* 卡片背景：純白 */
+    --primary-color: #8E735B;  /* 主色：胡桃木色 (按鈕、標題) */
+    --primary-hover: #6F5946;  /* 主色深色狀態 (Hover) */
+    --secondary-color: #D4C7B0;/* 輔助色：亞麻色 (邊框、分隔線) */
+    --text-main: #5D4D3F;      /* 文字：深咖啡色 */
+    --text-muted: #888888;     /* 文字：灰色 (次要資訊) */
+    --accent-error: #C08261;   /* 強調色：磚紅 (錯誤提示) */
+    
+    /* 圓角與間距 */
+    --border-radius: 8px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+}
+
+/* 基礎重設 (Reset) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    font-family: 'Segoe UI', "Microsoft JhengHei", sans-serif;
+    color: var(--text-main);
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+/* 連結樣式 */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: var(--accent-error);
+    text-decoration: underline;
+}
+
+/* 通用按鈕 (Primary Button) */
+.btn-primary {
+    display: inline-block;
+    width: 100%;
+    padding: 12px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+}
+
+.btn-primary:active {
+    transform: scale(0.98); /* 點擊時微縮效果 */
+}
+
+/* 通用輸入框 (Input Fields) */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--secondary-color);
+    border-radius: var(--border-radius);
+    background-color: #FAF9F6; /* 極淺灰，增加層次 */
+    font-size: 1rem;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(142, 115, 91, 0.1);
+}
+
+/* 通用錯誤訊息文字 */
+.error-msg {
+    color: var(--accent-error);
+    font-size: 0.9rem;
+    margin-top: 4px;
+    min-height: 1.4em; /* 預留高度避免跳動 */
+    font-weight: 500;
+}
+/* 新增：語言切換按鈕 (固定在右上角) */
+/* css/style.css - 語言按鈕美化 (更新) */
+
+.lang-switch {
+    /* 使用 fixed 確保它固定在視窗右上角，不會被卡片擠壓 */
+    position: fixed; 
+    top: 19px;
+    right: 25px;
+    z-index: 1000; /* 確保在最上層 */
+    
+    /* 大地色系美編 */
+    background-color: transparent;
+    border: 2px solid var(--primary-color); /* 胡桃木色邊框 */
+    color: var(--primary-color);
+    padding: 6px 16px;
+    border-radius: 20px; /* 膠囊狀圓角 */
+    
+    font-size: 0.9rem;
+    font-weight: bold;
+    font-family: 'Segoe UI', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    /* 輕微陰影讓它浮起來 */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.lang-switch:hover {
+    background-color: var(--primary-color);
+    color: #FFFFFF; /* 懸停時變填滿 */
+    box-shadow: 0 4px 8px rgba(142, 115, 91, 0.3);
+    transform: translateY(-2px); /* 微微上浮效果 */
+}
+
+.lang-switch:active {
+    transform: translateY(0);
+}

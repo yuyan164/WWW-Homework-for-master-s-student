@@ -1,0 +1,88 @@
+/* css/login.css - 登入頁面專屬樣式 */
+
+/* 讓登入框在畫面正中央 */
+.auth-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px; /* 避免手機版貼邊 */
+}
+
+/* 登入卡片容器 */
+.auth-container {
+    background-color: var(--card-bg); /* 使用 style.css 定義的變數 */
+    width: 100%;
+    max-width: 400px;
+    padding: 2.5rem;
+    border-radius: 12px;
+    /* 柔和的大地色系陰影 */
+    box-shadow: 0 10px 25px rgba(142, 115, 91, 0.15); 
+    border-top: 6px solid var(--primary-color); /* 頂部裝飾條 */
+}
+
+.auth-container h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--text-main);
+    letter-spacing: 1px;
+}
+
+/* 表單間距設定 */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+/* 密碼輸入框區塊 (為了放顯示按鈕) */
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* 顯示/隱藏密碼按鈕 */
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    cursor: pointer;
+    padding: 5px;
+    font-weight: 600;
+}
+
+.toggle-password:hover {
+    color: var(--primary-color);
+}
+
+/* 底部連結區域 */
+.auth-footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.95rem;
+    color: var(--text-main);
+}
+/* 新增：返回首頁連結樣式 */
+.back-home-link {
+    display: inline-block;
+    margin-bottom: 1rem;
+    color: var(--text-muted); /* 淺灰色 */
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.back-home-link:hover {
+    color: var(--primary-color); /* 懸停時變回主色 */
+    text-decoration: none;
+}

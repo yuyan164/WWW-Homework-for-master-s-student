@@ -1,0 +1,177 @@
+<!--
+  檔案名稱：index.html
+  檔案用途：本檔案是聊天室系統的主要操作頁面。
+
+  主要功能：
+  1. 顯示目前登入使用者的 nickname 與登出按鈕。
+  2. 顯示群組聊天室按鈕、線上人數與線上使用者列表。
+  3. 提供群組聊天室與一對一私人聊天室的切換功能。
+  4. 顯示聊天對象名稱、訊息內容、發送者暱稱與訊息傳送時間。
+  5. 提供文字輸入、emoji 選擇、圖片選擇與圖片預覽功能。
+  6. 提供動態 typing indicator 與未讀訊息提醒。
+  7. 提供一對一遊戲邀請、遊戲畫面、離開遊戲與遊戲結果顯示區。
+  8. 提供排行榜顯示與 CSV 下載按鈕。
+  9. 支援中文與英文雙語介面切換。
+  10. 使用 css/index.css 中的大地色系風格設定。
+
+  注意事項：
+  本頁面的動態功能主要由 js/index.js、js/i18n.js、js/gameRegistry.js 與 js/tictactoe.js 控制。
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Earth Chatroom</title>
+  <link rel="stylesheet" href="/css/index.css?v=final_v4" />
+</head>
+<body class="chat-body">
+  <div class="app-shell">
+    <header class="top-bar">
+      <div class="top-left">
+        <span class="top-label" data-i18n="currentUser">User</span>
+        <strong id="currentNickname">...</strong>
+      </div>
+
+      <div class="top-actions">
+        <div class="language-switch">
+          <button type="button" class="lang-btn" data-lang-option="zh">中文</button>
+          <span>/</span>
+          <button type="button" class="lang-btn" data-lang-option="en">English</button>
+        </div>
+        <button id="leaderboardBtn" type="button" class="ghost-btn" data-i18n="leaderboard">Leaderboard</button>
+        <button id="logoutBtn" type="button" class="danger-btn" data-i18n="logout">Logout</button>
+      </div>
+    </header>
+
+    <main class="chat-layout">
+      <aside class="sidebar" aria-label="Chat navigation">
+        <button id="groupBtn" type="button" class="nav-chat-btn group-btn">
+          <span class="red-dot" aria-hidden="true"></span>
+          <span data-i18n="group">Group</span>
+        </button>
+
+        <div class="online-summary">
+          <span data-i18n="onlineUsers">Online Users</span>:
+          <strong id="onlineCount">0</strong>
+        </div>
+
+        <nav id="userList" class="user-list"></nav>
+      </aside>
+
+      <section class="chat-panel">
+        <div class="chat-heading">
+          <div>
+            <span class="chat-target-label" data-i18n="chattingWith">Chatting with</span>
+            <h2 id="chatTargetName" data-i18n="noChatSelected">Please select a chat partner</h2>
+          </div>
+          <div id="chatSearchHost" class="chat-search-host"></div>
+        </div>
+
+        <div id="messageArea" class="message-area" aria-live="polite"></div>
+
+        <div class="composer">
+          <div id="typingIndicator" class="typing-indicator"></div>
+
+          <div id="imagePreview" class="image-preview hidden">
+            <img id="previewImg" alt="Selected preview" />
+            <button id="cancelImageBtn" type="button" class="small-icon-btn" data-i18n-title="cancelImage" title="Cancel image">×</button>
+          </div>
+
+          <div id="emojiPanel" class="emoji-panel hidden" aria-label="Emoji picker"></div>
+
+          <div class="tool-row">
+            <button id="emojiBtn" type="button" class="tool-btn" data-i18n-title="emoji" title="Emoji">😊</button>
+            <button id="imageBtn" type="button" class="tool-btn" data-i18n-title="image" title="Image">🖼️</button>
+            <button id="stickerBtn" type="button" class="tool-btn" data-i18n-title="sticker" title="Sticker">⭐</button>
+            <button id="gameBtn" type="button" class="tool-btn" data-i18n-title="game" title="Game">🎮</button>
+
+            <input id="imageInput" type="file" accept="image/*" class="hidden" />
+            <input id="stickerInput" type="file" accept="image/*" class="hidden" />
+          </div>
+
+          <div class="input-row">
+            <textarea id="messageInput" rows="2" data-i18n-placeholder="messagePlaceholder" placeholder="Type your message here..."></textarea>
+            <button id="sendBtn" type="button" class="send-btn" data-i18n-title="send" title="Send">➤</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="gameSelectModal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
+    <section class="modal-card">
+      <h3 data-i18n="chooseGame">Choose a game</h3>
+      <p class="muted" data-i18n="chooseGameHint">Select one game before sending an invitation.</p>
+      <div id="gameOptions" class="game-options"></div>
+      <div class="modal-actions">
+        <button id="cancelGameSelectBtn" type="button" class="ghost-btn" data-i18n="cancel">Cancel</button>
+      </div>
+    </section>
+  </div>
+
+  <div id="leaderboardModal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
+    <section class="modal-card leaderboard-card">
+      <div class="modal-title-row">
+        <h3 data-i18n="leaderboard">Leaderboard</h3>
+        <button id="closeLeaderboardBtn" type="button" class="small-icon-btn" data-i18n-title="close" title="Close">×</button>
+      </div>
+      <div id="leaderboardContent" class="leaderboard-content"></div>
+      <div class="modal-actions">
+        <a id="downloadCsvBtn" class="primary-btn" href="/api/leaderboard.csv" download data-i18n="downloadCsv">Download CSV</a>
+      </div>
+    </section>
+  </div>
+
+  <div id="gameOverlay" class="game-overlay hidden" role="dialog" aria-modal="true">
+    <section class="game-shell">
+      <div class="game-top-row">
+        <div>
+          <span class="game-kicker" data-i18n="currentGame">Current Game</span>
+          <h2 id="gameTitle">Tic-Tac-Toe</h2>
+        </div>
+        <button id="quitGameBtn" type="button" class="danger-btn" data-i18n="quitGame">Quit Game</button>
+      </div>
+      <div id="gameContent" class="game-content"></div>
+    </section>
+  </div>
+
+  <div id="imageViewerModal" class="image-viewer-backdrop hidden" role="dialog" aria-modal="true">
+  <section class="image-viewer-card">
+    <button id="closeImageViewerBtn" type="button" class="image-viewer-close" data-i18n-title="closeImageViewer" title="Close image">×</button>
+    <img id="enlargedImage" class="enlarged-image" alt="Enlarged chat image" />
+  </section>
+</div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/i18n.js?v=final_v7"></script>
+  <script src="/js/gameRegistry.js?v=final_v4"></script>
+
+  <script src="/js/tictactoe.js"></script>
+  <script src="/js/minesweeper.js?v=final_v2"></script>
+  <script src="/js/game2048.js?v=final_v4"></script>
+  <script src="/js/snakes_ladders.js?v=final_v9"></script>
+
+  <script src="/js/read_receipt.js"></script>
+  <script src="/js/typing_indicator.js"></script>
+  <script src="/js/emoji_panel.js"></script>
+  <script src="/js/quick_emoji.js?v=final_v3"></script>
+  <script src="/js/sticker.js?v=final_v4"></script>
+  <script src="/js/image_upload.js"></script>
+  <script src="/js/image_viewer.js"></script>
+  <script src="/js/leaderboard.js"></script>
+  <script src="/js/background_change.js"></script>
+  <script src="/js/chat_history.js?v=final_v2"></script>
+  <script src="/js/avatar.js"></script>
+  <script src="/js/chat_search.js?v=final_v3"></script>
+  <script src="/js/memo.js?v=final_v5"></script>
+  <script src="/js/solo_games.js?v=final_v3"></script>
+  <script src="/js/reply_message.js?v=final_v2"></script>
+  <script src="/js/file_upload.js?v=final_v1"></script>
+  <script src="/js/announcement.js?v=final_v5"></script>
+
+
+  <script src="/js/index.js?v=final_v45"></script>
+
+</body>
+</html>

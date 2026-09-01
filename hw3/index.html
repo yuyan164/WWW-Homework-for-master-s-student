@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="zh-Hant">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Campus Resource Reservation | Home</title>
+
+  <!-- 外部 CSS -->
+  <link rel="stylesheet" href="css/style.css?v=20260217_2" />
+  <link rel="stylesheet" href="css/index.css?v=20260211_3" />
+</head>
+
+<body id="page-index">
+  <!-- Topbar -->
+  <header class="topbar">
+    <button id="lang-switch-btn" class="lang-switch">English</button><!-- 中英轉換 -->
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1 data-i18n="index_brand_title">Campus Reservation</h1>
+          <p data-i18n="index_brand_subtitle">校園設備 / 空間預約系統</p>
+        </div>
+      </div>
+
+      <nav class="nav" aria-label="primary">
+        <div class="chip primary" id="goHome" href="index.html" data-i18n="nav_home">🏠 主頁</div>
+        <div class="chip" id="goUser" data-i18n="nav_user">👤 使用者頁面</div>
+      </nav>
+
+      <div class="auth">
+        <div class="who" id="who">
+          <b id="whoName">Casey</b>
+          <span id="whoRole">User</span>
+        </div>
+        <div class="avatar" id="avatar" title="使用者頭貼" data-i18n="nav_title"></div>
+
+        <button class="btn brand" id="loginBtn" type="button" data-i18n="btn_login_register">登入/註冊</button>
+        <button class="btn" id="logoutBtn" style="display:none;" data-i18n="btn_logout">登出</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Filters -->
+    <section class="filters" aria-label="filters">
+      <div class="grid">
+        <div class="field" style="grid-column: span 3;">
+          <div class="label" data-i18n="filter_category">分類搜尋</div>
+
+          <select class="control" id="category">
+            <option value="all" data-i18n="cat_all">全部分類</option>
+            <option value="space" data-i18n="cat_space">空間類</option>
+            <option value="3c" data-i18n="cat_3c">3C 類</option>
+            <option value="book" data-i18n="cat_book">書本類</option>
+          </select>
+        </div>
+
+        <div class="field" style="grid-column: span 3;">
+          <div class="label" data-i18n="filter_date">日期</div>
+          <input class="input" id="date" type="date" />
+        </div>
+
+        <div class="field" style="grid-column: span 2;">
+          <div class="label" data-i18n="filter_start">開始時間</div>
+          <input class="input" id="start" type="time" value="10:00" />
+        </div>
+
+        <div class="field" style="grid-column: span 2;">
+          <div class="label" data-i18n="filter_end">結束時間</div>
+          <input class="input" id="end" type="time" value="11:00" />
+        </div>
+
+        <div class="field" style="grid-column: span 2;">
+          <div class="label" data-i18n="filter_reserved">是否預約</div>
+          <select class="control" id="reservedFilter">
+            <option value="all" data-i18n="reserved_all">全部</option>
+            <option value="available" data-i18n="reserved_available">未預約（可用）</option>
+            <option value="reserved" data-i18n="reserved_reserved">已預約（未開始）</option>
+            <option value="inuse" data-i18n="reserved_inuse">使用中</option>
+          </select>
+        </div>
+
+        <div class="field" style="grid-column: span 8;">
+          <div class="label" data-i18n="filter_keyword">關鍵字搜尋（名稱 / 地點 / 描述）</div>
+          <input class="input" id="keyword" type="text" data-i18n-placeholder="ph_keyword"
+            placeholder="例如：投影機、會議室、圖書館..." />
+        </div>
+
+        <div class="actions" style="grid-column: span 4;">
+          <button class="btn2" id="reset" data-i18n="btn_reset">清除條件</button>
+          <button class="btn2 brand" id="apply" data-i18n="btn_apply">套用搜尋</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="results-head">
+      <div>
+        <h3 id="resultTitle" data-i18n="results_title">資源展示（由新到舊）</h3>
+        <div class="hint" id="resultHint" data-i18n="results_hint">已依條件顯示資源狀態。</div>
+      </div>
+      <div class="hint" id="countHint">—</div>
+    </div>
+
+    <!-- Cards -->
+    <section class="cards" id="cards"></section>
+  </main>
+
+  <!-- Reservation Modal -->
+  <div class="backdrop" id="backdrop" role="dialog" aria-modal="true">
+    <div class="modal">
+      <div class="modal-head">
+        <h4 id="modalTitle" data-i18n="modal_title">預約資源</h4>
+        <button class="close" id="closeModal" data-i18n="btn_close">關閉</button>
+      </div>
+      <div class="modal-body">
+        <div class="field">
+          <div class="label" data-i18n="modal_resource">資源</div>
+          <input class="input" id="mResource" disabled />
+        </div>
+        <div class="field">
+          <div class="label" data-i18n="modal_type">分類</div>
+          <input class="input" id="mType" disabled />
+        </div>
+        <div class="field">
+          <div class="label" data-i18n="modal_start">開始時間</div>
+          <input class="input" id="mStart" type="datetime-local" />
+        </div>
+        <div class="field">
+          <div class="label" data-i18n="modal_end">結束時間</div>
+          <input class="input" id="mEnd" type="datetime-local" />
+        </div>
+      </div>
+
+      <div id="modalMsg" class="modal-msg" role="alert" aria-live="polite" style="display:none;"></div>
+      <div class="modal-foot">
+        <button type="button" class="btn2" id="cancelReserve" data-i18n="btn_cancel">取消</button>
+        <button type="button" class="btn2 brand" id="confirmReserve" data-i18n="btn_confirm_reserve">確認預約</button>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <!-- 外部 JS -->
+  <script src="js/index_role_ui.js?v=20260219_2"></script>
+
+  <script src="js/lang.js?v=260219_4"></script>
+  <script src="js/index_core.js?v=20260219_2"></script>
+  <script src="js/index_auth.js?v=20260219_2"></script>
+  <script src="js/index_data.js?v=20260219_2"></script>
+  <script src="js/index_topbar.js?v=20260219_2"></script>
+  <script src="js/index_cards.js?v=20260219_2"></script>
+  <script src="js/index_modal.js?v=20260219_2"></script>
+  <script src="js/index_filters.js?v=20260219_2"></script>
+
+  <!-- AI Chat -->
+  <script src="js/ai_chat.js?v=20260224_1"></script>
+
+  <!-- entry -->
+  <script src="js/index.js?v=20260219_2"></script>
+</body>
+
+</html>

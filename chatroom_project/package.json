@@ -1,0 +1,17 @@
+{
+  "name": "earth-tone-chatroom-game-project",
+  "version": "1.0.0",
+  "description": "Node.js Socket.io chatroom with private chat, group chat, Tic-Tac-Toe game, SQLite leaderboard, and bilingual UI.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "multer": "^2.1.1",
+    "socket.io": "^4.7.5",
+    "sqlite3": "^5.1.7"
+  }
+}

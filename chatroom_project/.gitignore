@@ -1,0 +1,17 @@
+# Node.js 套件資料夾，不需要上傳，執行 npm install 會自動產生
+node_modules/
+
+# SQLite 資料庫檔案，伺服器啟動後會自動建立
+chatroom.db
+
+# 上傳圖片資料夾中的使用者圖片不需要上傳
+uploads/avatars/*
+uploads/files/*
+
+
+# 系統暫存檔
+.DS_Store
+Thumbs.db
+
+# npm debug log
+npm-debug.log*

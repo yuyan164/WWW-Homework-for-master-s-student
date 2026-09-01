@@ -1,0 +1,558 @@
+/* css/user.css：只補 User Page & modal/卡片/列表；不改 style.css */
+
+.container{
+  width: min(1120px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 28px 0 60px;
+}
+
+.user-page{
+  background: var(--bg-color);
+}
+
+.page-actions{
+  display:flex;
+  justify-content:flex-start;
+  margin-bottom: var(--spacing-md);
+}
+
+.card{
+  background: var(--card-bg);
+  border: 1px solid var(--secondary-color);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+.card-head{
+  display:flex;
+  gap: 12px;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom: var(--spacing-md);
+}
+
+.card-title{
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.sub{
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+
+.btn-primary.inline{
+  width: auto;
+  padding: 10px 14px;
+}
+
+.btn-primary.ghost{
+  background: #fff;
+  color: var(--primary-color);
+  border: 1px solid var(--secondary-color);
+}
+.btn-primary.ghost:hover{
+  background: #faf9f6;
+}
+
+.danger-btn{
+  background: var(--accent-error);
+}
+.danger-btn:hover{
+  filter: brightness(0.95);
+}
+
+.topbar-btn{
+  width:auto;
+  padding: 10px 14px;
+  font-size: 0.95rem;
+}
+
+/* profile */
+.profile{
+  display:grid;
+  grid-template-columns: 84px 1fr;
+  gap: var(--spacing-md);
+  align-items:start;
+}
+.profile-avatar{
+  width: 84px;
+  height: 84px;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--secondary-color);
+  background: #faf9f6;
+  overflow:hidden;
+}
+.profile-avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.grid-3{
+  display:grid;
+  grid-template-columns: 1.1fr 1.5fr 0.8fr;
+  gap: var(--spacing-md);
+}
+.meta-label{
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+.meta-value{
+  font-size: 1rem;
+  font-weight: 650;
+}
+
+.hint{
+  margin-top: var(--spacing-sm);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* forms */
+.form{
+  display:grid;
+  gap: var(--spacing-md);
+}
+.form-row{
+  display:grid;
+  gap: 6px;
+}
+.label{
+  font-weight: 650;
+}
+
+/* ok message */
+.form-ok{
+  color: var(--primary-color);
+  font-weight: 650;
+  min-height: 1.4em;
+}
+
+/* tabs */
+.tabs{
+  display:flex;
+  gap: 10px;
+  align-items:center;
+  flex-wrap:wrap;
+  margin-top: 4px;
+}
+.tab{
+  border: 1px solid var(--secondary-color);
+  background: #faf9f6;
+  padding: 8px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  color: var(--text-main);
+}
+.tab.is-active{
+  background: var(--primary-color);
+  color:#fff;
+  border-color: var(--primary-color);
+}
+.tabs-right{
+  margin-left:auto;
+}
+
+/* list */
+.list{
+  margin-top: var(--spacing-md);
+  display:grid;
+  gap: var(--spacing-md);
+}
+.resv-item{
+  border: 1px solid var(--secondary-color);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-md);
+  background: #fff;
+}
+.resv-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap: 12px;
+}
+.resv-title{
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+.badges{
+  display:flex;
+  gap: 8px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+.badge{
+  border: 1px solid var(--secondary-color);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 0.85rem;
+  color: var(--text-main);
+  background: #faf9f6;
+}
+.badge.status-booked{ border-color: var(--primary-color); }
+.badge.status-cancelled{ border-color: var(--accent-error); color: var(--accent-error); }
+.badge.status-completed{ border-color: #7d9a7d; color:#4f6b4f; }
+
+.resv-meta{
+  margin-top: var(--spacing-sm);
+  color: var(--text-muted);
+  display:grid;
+  gap: 4px;
+  font-size: 0.95rem;
+}
+
+.resv-actions{
+  margin-top: var(--spacing-md);
+  display:flex;
+  gap: 10px;
+  flex-wrap:wrap;
+}
+
+/* danger */
+.card.danger{
+  border-color: rgba(192,130,97,0.6);
+}
+.danger-box{
+  border: 1px dashed rgba(192,130,97,0.7);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-md);
+  background: rgba(192,130,97,0.08);
+}
+.danger-text{
+  margin-bottom: var(--spacing-sm);
+}
+
+/* modal */
+.modal{ position:fixed; inset:0; display:none; z-index:2000; }
+.modal.is-open{ display:block; }
+.modal-backdrop{ position:absolute; inset:0; background: rgba(0,0,0,0.35); }
+
+.modal-panel{
+  position:relative;
+  width: min(560px, calc(100% - 32px));
+  margin: 10vh auto 0;
+  background: var(--card-bg);
+  border: 1px solid var(--secondary-color);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-md);
+}
+
+.modal-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap: 12px;
+  margin-bottom: var(--spacing-md);
+}
+
+.modal-text{
+  color: var(--text-main);
+  margin-bottom: var(--spacing-md);
+}
+
+.modal-actions{
+  display:flex;
+  justify-content:flex-end;
+  gap: 10px;
+  flex-wrap:wrap;
+}
+
+.xbtn{
+  border: 1px solid var(--secondary-color);
+  border-radius: var(--border-radius);
+  background:#faf9f6;
+  cursor:pointer;
+  width: 38px;
+  height: 38px;
+}
+
+.detail{
+  display:grid;
+  gap: 10px;
+}
+.detail .k{
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+.detail .v{
+  font-weight: 650;
+}
+
+@media (max-width: 860px){
+  .grid-3{ grid-template-columns: 1fr; }
+  .profile{ grid-template-columns: 1fr; }
+}
+/* ===== logoutModal：不要遮罩、不變白底，只留中間提示框 ===== */
+
+/* 讓整個 modal 覆蓋視窗並置中 */
+#logoutModal.modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* 打開時置中顯示 */
+#logoutModal.modal.is-open {
+  display: flex;
+    background: transparent !important;
+  backdrop-filter: none !important;
+}
+
+/* ✅ 直接把 backdrop 移除（不佔空間、不影響畫面） */
+#logoutModal .modal-backdrop {
+  display: none !important;
+}
+
+/* 讓提示框正常顯示在正中間 */
+#logoutModal .modal-panel {
+  position: relative;
+  margin: 0;
+  max-width: 560px;
+  width: min(560px, calc(100vw - 40px));
+}
+
+/* dropdown container */
+.dropdown { position: relative; }
+
+/* menu panel */
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 220px;
+  background: var(--card-bg);
+  border: 1px solid var(--secondary-color);
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.10);
+  padding: 8px;
+  display: none;
+  z-index: 1200;
+}
+
+/* open state */
+.dropdown-menu.is-open { display: block; }
+
+.dropdown-item {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  padding: 10px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: var(--text-main);
+  font-size: 0.95rem;
+}
+
+.dropdown-item:hover {
+  background: #FAF9F6;
+}
+
+.dropdown-item.danger {
+  color: var(--accent-error);
+}
+
+.dropdown-item.danger:hover {
+  background: rgba(192,130,97,0.10);
+}
+/* ===== Password show/hide ===== */
+.pwd-wrap{
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pwd-wrap input{
+  padding-right: 96px; /* 右邊預留給按鈕 */
+}
+
+.pwd-toggle{
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 1px solid var(--secondary-color);
+  background: #fff;
+  color: var(--text-main);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pwd-toggle:hover{
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+
+/* =========================
+   Bigger Account Profile UI
+   (put at the END of user.css)
+========================= */
+
+/* 整張帳戶資訊卡稍微更舒服 */
+#accountSection.card{
+  padding: calc(var(--spacing-md) + 6px);
+}
+
+/* Profile 排版放大：頭貼更大、字更大、間距更大 */
+#accountSection .profile{
+  grid-template-columns: 140px 1fr;  /* 原本 84px -> 140px */
+  gap: calc(var(--spacing-md) + 10px);
+  align-items: center;
+}
+
+/* 頭貼放大 */
+#accountSection .profile-avatar{
+  width: 140px;
+  height: 140px;
+  border-radius: 18px;             /* 更圓潤 */
+  border: 1px solid var(--secondary-color);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+}
+
+/* 右側欄位的 grid 間距加大 */
+#accountSection .grid-3{
+  gap: calc(var(--spacing-md) + 6px);
+}
+
+/* label 字放大一點 */
+#accountSection .meta-label{
+  font-size: 1rem;                 /* 原本 0.9rem */
+}
+
+/* value 放大 + 更醒目 */
+#accountSection .meta-value{
+  font-size: 1.2rem;               /* 原本 1rem */
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+
+/* 卡片標題也放大 */
+#accountSection .card-title{
+  font-size: 1.35rem;              /* 原本 1.1rem */
+}
+
+/* 帳戶資訊說明文字略放大 */
+#accountSection .hint{
+  font-size: 1rem;                 /* 原本 0.9rem */
+  line-height: 1.55;
+}
+
+/* 右上角「編輯帳戶資訊」按鈕稍微放大 */
+#accountSection #editProfileBtn{
+  padding: 12px 16px;
+  font-size: 1rem;
+}
+
+/* 手機版調整：避免頭貼太大擠到 */
+@media (max-width: 860px){
+  #accountSection .profile{
+    grid-template-columns: 1fr;
+    justify-items: start;
+  }
+  #accountSection .profile-avatar{
+    width: 120px;
+    height: 120px;
+  }
+}
+
+/* =========================
+   Account card - bigger layout (like your 2nd mock)
+   放在 user.css 最下面（覆蓋原本的 profile 樣式）
+   ========================= */
+
+/* 讓「帳戶資訊」卡片整體更大、更舒服 */
+#page-user .card:first-of-type{
+  padding: 28px 28px;
+}
+
+/* 標題變大一點 */
+#page-user .card:first-of-type .card-title{
+  font-size: 1.45rem;
+  font-weight: 900;
+}
+
+/* 右上角按鈕也放大一點 */
+#page-user .card:first-of-type #editProfileBtn{
+  padding: 12px 18px;
+  font-size: 1.02rem;
+  border-radius: 14px;
+}
+
+/* ✅ 主要：帳戶資訊排版（像你第二張：左側集中、右側留白） */
+#page-user .card:first-of-type .profile{
+  display: grid;
+  grid-template-columns: 240px 1fr;   /* 左：大頭貼+文字；右：留白 */
+  gap: 28px;
+  align-items: start;
+}
+
+/* 大頭貼放大 */
+#page-user .card:first-of-type .profile-avatar{
+  width: 210px;
+  height: 210px;
+  border-radius: 26px;
+  border: 1px solid var(--secondary-color);
+  background: #faf9f6;
+  overflow: hidden;
+}
+
+#page-user .card:first-of-type .profile-avatar img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 讓文字區塊在左欄下面排列（變成你第二張那種大字直排） */
+#page-user .card:first-of-type .profile-meta{
+  padding-top: 10px;
+  max-width: 520px; /* 讓字不要拉太寬，更像你示意圖 */
+}
+
+/* 原本 grid-3 是三欄，這裡改成「一欄」直排 */
+#page-user .card:first-of-type .grid-3{
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+/* label/value 字體放大 */
+#page-user .card:first-of-type .meta-label{
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+#page-user .card:first-of-type .meta-value{
+  font-size: 1.75rem;
+  font-weight: 900;
+  letter-spacing: 0.2px;
+}
+
+/* hint 也放大一些 */
+#page-user .card:first-of-type .hint{
+  margin-top: 26px;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+/* 手機版：改成直向置中（避免太擠） */
+@media (max-width: 860px){
+  #page-user .card:first-of-type .profile{
+    grid-template-columns: 1fr;
+  }
+  #page-user .card:first-of-type .profile-avatar{
+    width: 220px;
+    height: 220px;
+  }
+}

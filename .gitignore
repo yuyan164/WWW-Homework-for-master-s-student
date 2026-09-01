@@ -1,0 +1,17 @@
+# 密碼與 API Key
+.env
+.env.*
+!.env.example
+**/env.php
+
+# 相依套件
+node_modules/
+vendor/
+
+# 壓縮備份
+*.zip
+
+# 系統與編輯器
+.DS_Store
+Thumbs.db
+.vscode/

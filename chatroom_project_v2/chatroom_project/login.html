@@ -1,0 +1,52 @@
+<!--
+  login.html
+  ------------------------------------------------------------
+  This file provides the login page for the chatroom project.
+  Users enter a unique nickname before entering the chatroom.
+  The page uses /js/login.js for login logic and /js/i18n.js
+  for Chinese/English bilingual interface text.
+  ------------------------------------------------------------
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Earth Chatroom Login</title>
+  <link rel="stylesheet" href="/css/index.css" />
+</head>
+<body class="login-body">
+  <main class="login-shell">
+    <section class="login-card">
+      <div class="language-switch compact">
+        <button type="button" class="lang-btn" data-lang-option="zh">中文</button>
+        <span>/</span>
+        <button type="button" class="lang-btn" data-lang-option="en">English</button>
+      </div>
+
+      <div class="brand-mark">✦</div>
+      <h1 data-i18n="loginTitle">Chatroom</h1>
+      <p class="muted" data-i18n="loginSubtitle">Please enter your nickname</p>
+
+      <form id="loginForm" class="login-form">
+        <label for="nicknameInput" data-i18n="nicknameLabel">Nickname</label>
+        <input
+          id="nicknameInput"
+          name="nickname"
+          type="text"
+          maxlength="20"
+          autocomplete="off"
+          data-i18n-placeholder="nicknamePlaceholder"
+          placeholder="Enter your nickname"
+          required
+        />
+        <p id="loginError" class="form-error" aria-live="polite"></p>
+        <button type="submit" class="primary-btn full-width" data-i18n="loginButton">Login</button>
+      </form>
+    </section>
+  </main>
+
+  <script src="/js/i18n.js"></script>
+  <script src="/js/login.js"></script>
+</body>
+</html>

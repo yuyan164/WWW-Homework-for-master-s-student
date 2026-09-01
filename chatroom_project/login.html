@@ -1,0 +1,58 @@
+<!--
+  檔案名稱：login.html
+  檔案用途：本檔案是聊天室系統的登入頁面。
+
+  主要功能：
+  1. 提供使用者輸入 nickname 的登入畫面。
+  2. 使用者送出 nickname 後，會交由前端 login.js 與後端 server.js 檢查是否重複。
+  3. 若 nickname 可使用，使用者會進入 index.html 聊天室主頁。
+  4. 若 nickname 已被使用，畫面會顯示錯誤提示，要求使用者重新輸入。
+  5. 支援中文與英文雙語介面切換。
+  6. 使用 css/index.css 中的大地色系風格設定。
+
+  注意事項：
+  本頁面只負責登入介面，實際的登入檢查由後端 Node.js 處理。
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Earth Chatroom Login</title>
+  <link rel="stylesheet" href="/css/index.css" />
+</head>
+<body class="login-body">
+  <main class="login-shell">
+    <section class="login-card">
+      <div class="language-switch compact">
+        <button type="button" class="lang-btn" data-lang-option="zh">中文</button>
+        <span>/</span>
+        <button type="button" class="lang-btn" data-lang-option="en">English</button>
+      </div>
+
+      <div class="brand-mark">✦</div>
+      <h1 data-i18n="loginTitle">Chatroom</h1>
+      <p class="muted" data-i18n="loginSubtitle">Please enter your nickname</p>
+
+      <form id="loginForm" class="login-form">
+        <label for="nicknameInput" data-i18n="nicknameLabel">Nickname</label>
+        <input
+          id="nicknameInput"
+          name="nickname"
+          type="text"
+          maxlength="20"
+          autocomplete="off"
+          data-i18n-placeholder="nicknamePlaceholder"
+          placeholder="Enter your nickname"
+          required
+        />
+        <p id="loginError" class="form-error" aria-live="polite"></p>
+        <button type="submit" class="primary-btn full-width" data-i18n="loginButton">Login</button>
+      </form>
+    </section>
+  </main>
+
+  <script src="/js/i18n.js"></script>
+  <script src="/js/login.js"></script>
+</body>
+</html>

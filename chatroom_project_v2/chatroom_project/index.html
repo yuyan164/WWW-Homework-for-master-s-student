@@ -1,0 +1,133 @@
+<!--
+  index.html
+  ------------------------------------------------------------
+  This file provides the main chatroom page. It includes the
+  top bar, online user list, group chat button, message area,
+  input tools, game invitation modal, game overlay, and leaderboard.
+  Logic is handled by /js/index.js, /js/gameRegistry.js,
+  /js/tictactoe.js, and /js/i18n.js.
+  ------------------------------------------------------------
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Earth Chatroom</title>
+  <link rel="stylesheet" href="/css/index.css" />
+</head>
+<body class="chat-body">
+  <div class="app-shell">
+    <header class="top-bar">
+      <div class="top-left">
+        <span class="top-label" data-i18n="currentUser">User</span>
+        <strong id="currentNickname">...</strong>
+      </div>
+
+      <div class="top-actions">
+        <div class="language-switch">
+          <button type="button" class="lang-btn" data-lang-option="zh">中文</button>
+          <span>/</span>
+          <button type="button" class="lang-btn" data-lang-option="en">English</button>
+        </div>
+        <button id="leaderboardBtn" type="button" class="ghost-btn" data-i18n="leaderboard">Leaderboard</button>
+        <button id="logoutBtn" type="button" class="danger-btn" data-i18n="logout">Logout</button>
+      </div>
+    </header>
+
+    <main class="chat-layout">
+      <aside class="sidebar" aria-label="Chat navigation">
+        <button id="groupBtn" type="button" class="nav-chat-btn group-btn">
+          <span class="red-dot" aria-hidden="true"></span>
+          <span data-i18n="group">Group</span>
+        </button>
+
+        <div class="online-summary">
+          <span data-i18n="onlineUsers">Online Users</span>:
+          <strong id="onlineCount">0</strong>
+        </div>
+
+        <nav id="userList" class="user-list"></nav>
+      </aside>
+
+      <section class="chat-panel">
+        <div class="chat-heading">
+          <div>
+            <span class="chat-target-label" data-i18n="chattingWith">Chatting with</span>
+            <h2 id="chatTargetName" data-i18n="noChatSelected">Please select a chat partner</h2>
+          </div>
+          <span id="connectionStatus" class="status-pill" data-i18n="connecting">Connecting...</span>
+        </div>
+
+        <div id="messageArea" class="message-area" aria-live="polite"></div>
+
+        <div class="composer">
+          <div id="typingIndicator" class="typing-indicator"></div>
+
+          <div id="imagePreview" class="image-preview hidden">
+            <img id="previewImg" alt="Selected preview" />
+            <button id="cancelImageBtn" type="button" class="small-icon-btn" data-i18n-title="cancelImage" title="Cancel image">×</button>
+          </div>
+
+          <div id="emojiPanel" class="emoji-panel hidden" aria-label="Emoji picker"></div>
+
+          <div class="tool-row">
+            <button id="emojiBtn" type="button" class="tool-btn" data-i18n-title="emoji" title="Emoji">😊</button>
+            <button id="imageBtn" type="button" class="tool-btn" data-i18n-title="image" title="Image">🖼️</button>
+            <button id="gameBtn" type="button" class="tool-btn" data-i18n-title="game" title="Game">🎮</button>
+            <input id="imageInput" type="file" accept="image/*" class="hidden" />
+          </div>
+
+          <div class="input-row">
+            <textarea id="messageInput" rows="2" data-i18n-placeholder="messagePlaceholder" placeholder="Type your message here..."></textarea>
+            <button id="sendBtn" type="button" class="send-btn" data-i18n-title="send" title="Send">➤</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="gameSelectModal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
+    <section class="modal-card">
+      <h3 data-i18n="chooseGame">Choose a game</h3>
+      <p class="muted" data-i18n="chooseGameHint">Select one game before sending an invitation.</p>
+      <div id="gameOptions" class="game-options"></div>
+      <div class="modal-actions">
+        <button id="cancelGameSelectBtn" type="button" class="ghost-btn" data-i18n="cancel">Cancel</button>
+      </div>
+    </section>
+  </div>
+
+  <div id="leaderboardModal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
+    <section class="modal-card leaderboard-card">
+      <div class="modal-title-row">
+        <h3 data-i18n="leaderboard">Leaderboard</h3>
+        <button id="closeLeaderboardBtn" type="button" class="small-icon-btn" data-i18n-title="close" title="Close">×</button>
+      </div>
+      <div id="leaderboardContent" class="leaderboard-content"></div>
+      <div class="modal-actions">
+        <a id="downloadCsvBtn" class="primary-btn" href="/api/leaderboard.csv" download data-i18n="downloadCsv">Download CSV</a>
+      </div>
+    </section>
+  </div>
+
+  <div id="gameOverlay" class="game-overlay hidden" role="dialog" aria-modal="true">
+    <section class="game-shell">
+      <div class="game-top-row">
+        <div>
+          <span class="game-kicker" data-i18n="currentGame">Current Game</span>
+          <h2 id="gameTitle">Tic-Tac-Toe</h2>
+        </div>
+        <button id="quitGameBtn" type="button" class="danger-btn" data-i18n="quitGame">Quit Game</button>
+      </div>
+      <div id="gameContent" class="game-content"></div>
+    </section>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/i18n.js"></script>
+  <script src="/js/gameRegistry.js"></script>
+  <script src="/js/tictactoe.js"></script>
+  <script src="/js/index.js"></script>
+</body>
+</html>
