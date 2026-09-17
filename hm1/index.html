@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <a href="#" class="logo">My Portfolio</a>
+    <nav class="nav">
+      <a href="#about-me" class="nav-link">About Me</a>
+      <a href="#my-photos" class="nav-link">My Photo</a>
+      <div class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle">Homework</a>
+        <div class="dropdown-menu">
+          <a href="#">Homework 2</a>
+          <a href="#">Homework 3</a>
+          <a href="#">Project</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main class="main">
+    <section class="about" id="about-me">
+      <div class="about-text">
+        <h2>About Me</h2>
+        <p>
+          This is a short self-introduction. I am currently studying
+          web programming and design at university. I enjoy exploring
+          the differences between Flexbox and Grid for building modern,
+          responsive web interfaces. Outside of coding, I love hiking
+          and photography.
+        </p>
+      </div>
+      <div class="about-photo">
+        <img src="images/profile.jpg" alt="Profile Photo" class="profile-img">
+      </div>
+    </section>
+    <section class="gallery" id="my-photos">
+      <h2 class="gallery-title">My Photos</h2>
+      <div class="gallery-grid">
+        <div class="photo-card">
+          <img src="images/photo1.jpg" alt="Photo 1">
+          <div class="photo-caption">Mountain Gorge</div>
+        </div>
+        <div class="photo-card">
+          <img src="images/photo2.jpg" alt="Photo 2">
+          <div class="photo-caption">Green Waters</div>
+        </div>
+        <div class="photo-card">
+          <img src="images/photo3.jpg" alt="Photo 3">
+          <div class="photo-caption">Hilltop View</div>
+        </div>
+        <div class="photo-card">
+          <img src="images/photo4.jpg" alt="Photo 4">
+          <div class="photo-caption">Stone Houses</div>
+        </div>
+        <div class="photo-card">
+          <img src="images/photo5.jpg" alt="Photo 5">
+          <div class="photo-caption">Sunset Beach</div>
+        </div>
+        <div class="photo-card">
+          <img src="images/photo6.jpg" alt="Photo 6">
+          <div class="photo-caption">Valley Road</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <footer class="footer">
+    <p>&copy; 2026 Web Programming Course. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>
