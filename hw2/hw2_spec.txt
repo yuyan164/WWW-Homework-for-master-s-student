@@ -1,0 +1,142 @@
+1 
+ WWW Technologies and Applications 202 6 
+Assignment 2 – JavaScrip t and  DOM  
+TA: Howard (614410104 @alum.ccu.edu.tw ) 
+Deadline: 11:59pm, April  16 
+ 
+➢ ATTENTION  
+ Please follow all the specifications below , or you will get a deduction or a zero : 
+1. You are required  to build a typing trainer  by using JavaScript  and DOM.  
+2. The fu nction s of the buttons must be implemented and work correctly  based on the 
+requirements . CSS will not be restricted  in this assignment , so you can freely design  any effects 
+as you wish . 
+3. Do NOT copy others’ work , or you will get a zero.  
+4.  You must  link your Homework  2 button from A ssignment 1 page to this assignment. If you fail 
+to do so , this assignment will NOT be graded.  
+➢ DESCRIPTION  
+In this assignment, you will build an interactive Typing Trainer  using JavaScript and DOM . The goal 
+is to create a professional web application that tracks typing speed  and accuracy, and provides real -time 
+visual and auditory feedback s to the user . Your ap plication must support multiple practice modes, 
+specifically focusing on a n "Article Mode " feature that converts external JSON text into interactive 
+exercises.  
+  
+2 
+  
+1. The layout of the page:  
+Figure  1 shows the layout of a typing trainer . The purpose is to make  the typing trainer work correctly 
+with special  sound effects . The typing trainer  generates characters , and each time a key is pressed, the 
+displayed character is replaced consecutively with a new one.  Play a corresponding sound effect when 
+the user presse s the correct key or an incorrect key.  All materials of images and sound  you need can be 
+found on eCourse 2, or you can also use your own . 
+ 
+Figure 1. Typing Trainer  layout  
+2. The typing trainer  display and functions  
+  To fulfill the design specifications of the typing trainer, your application must  implement the 
+following components:  
+2.1 A character/text display area : A central region to show the practice target character or the 
+content of the loaded article.   
+2.2 Case selectio n button : Controls to toggle between Uppercase, Lowercase, or "Both" (Mixed Case) 
+modes.  
+2.3 Mode selection button : Buttons to switch between different practice types (Sequential or 
+Randomized).  
+2.4 Quick -set timer button : Shortcut buttons to instantly set the duration (e.g., 30s, 60s).  
+2.5 A custom time input field : An area for users to manually enter a specific practice duration in 
+
+3 
+ seconds.  
+2.6 Reset button : A button to res et all settings to default . 
+2.7 A "Start" button : A primary action button to start the exercise.  
+2.8 An "End Early" button : During the exercise, the interface must include an "End Early" button to 
+allow users to stop the practice session before the timer expires, as shown in Figure 2. The 
+settings buttons below the keyboard (e.g., the Quick -Set Timer button)  must be hidden.  
+ 
+Figure 2. An "End Early" button  during the typing session  
+2.9 A virtual keyboard display : A visual representation of the keyboard layout.  
+2.10 Auditory feedback : The system is required to play distinct sound effects based on the accuracy 
+of each keystroke . 
+  
+
+4 
+ 2.11 A JSON file upload button : A dedicated button to browse files and load JSON files for article -
+based practice.  
+2.12 Article mode and v irtual display  (interactive text interface) : When the user loads a valid JSON 
+file, the system must transition  from the single -character display to a comprehensive virtual text 
+display . This interface provides the user with a preview of the upcoming text and a visual guide 
+for the typing process,  as shown in Figure 3.   
+ 
+Figure 3. Interactive Text Interface  while load ing a JSON file . 
+ 
+2.13 Scoreboard  and elapsed time : A real -time display area that allows users to monitor the total 
+number of correct and incorrect characters typed during the practice session.  Furthermore, the 
+elapsed  time  must be displaced next to the scoreboard.  
+  
+
+5 
+ 2.14 Result screen : Upon the expiration of the timer or an "End Early" action, the system must trigger 
+a result screen  to provide a comprehensive summary of the user's performance , as shown in 
+Figure 4.  CPM stands for Characters Per Minute , and is used to measure the typing speed.  
+ 
+  
+    Figure 4. Results Screen  
+➢ Submission  
+1. How to submit your assignment and what should be submitted  
+1.1 How to submit your assignment  
+The proced ures for submitting your assignment can be found on our document website 
+(http://wwwdmplus2026.csie.io/homework/submit ). 
+ 
+1.2 What should be submitted  
+You should submit  your assignment source codes to GitLab  and deploy your website on the project 
+server. Additionally, y ou should record a demo video to show each function in your assignment , 
+upload  it to YouTube , and paste your link into eCourse2.  Furthermore, y ou need to add the link  to 
+this assignment  in the dropdown menu of your portfolio page created in Homewo rk 1. Here is the 
+summary:  
+A. Submit your source code to GitLab:  
+http://wwwdmplus2026.csie.io:81  
+B. Deploy your homework to the project server using your Docker container:  
+http://wwweb2026.csie.io  
+C. Upload your  demo video to YouTube and submit the video link under the corresponding 
+homework on eCourse2.  
+
+6 
+ ➢ Grade policy  
+Graders will test your homework only on Google Chrome in 1920*1080. The homework submitted late 
+will be accepted for up to 7 days after the due date and will receive an automatic 30% penalty. Homework 
+submitted more than 7 days after the due date will not be accepted. Only one final submission (either one 
+on-time or one late su bmission) is accepted.  Your assignment will not be graded without a demo video.  
+You should explain all function s of your assignment in the demo video. The link to your demo video should 
+be submitted to eCourse. The TA(s) will mark and give points according  to the following  grading policy : 
+ 
+Category  Requirement / Description  Weight  
+Layout  The interface of the typing trainer  (Figure 1)  5% 
+Timer 
+Functions  Quick -set buttons ( e.g., 30s, 60s ) 5% 
+Real -time duration display  5% 
+Support for any custom time input  5% 
+End Early  
+Button  Allow users to stop the practice session before the timer expires  5% 
+Reset Button  A button to res et all settings to default  5% 
+Practice 
+Modes  Sequential mode:  Sequential exercise starting from A, B, C, ... , Z 5% 
+Randomized Mode: Characters appear in random order  5% 
+Article  mode: Use JSON -formatted files as the source for exercises. The 
+display area must show the upcoming content to be typed, allowing the 
+user to see the full sentence or paragraph in advance.  Highlight the current 
+target character with a blue underline or distinctive background color.  20% 
+Virtual 
+Keyboard  Visual feedback: Keys change color (e.g., turn green ) when the 
+correspon ding key is pressed.  10% 
+Correct sound effect: Play a "correct" sound effect when the user hits the 
+correct key . 5% 
+Incorrect sound effect: Play a "wrong" sound effect when a typo occurs . 5% 
+Scoreboard  Error  counter:  Real -time tracking and display of the total number of typos 
+during the practice session  5% 
+Correct counter:  Real -time tracking and display of the total number of 
+correct characters typed during the practice session  5% 
+Results 
+Screen  Calculate and display the final accuracy rate  
+(e.g., 𝐴𝑐𝑐𝑢𝑟𝑎𝑐𝑦 =𝐶𝑜𝑟𝑟𝑒𝑐𝑡  
+𝐶𝑜𝑟𝑟𝑒𝑐𝑡 +𝑊𝑟𝑜𝑛𝑔∗100% ) 5% 
+Calculate and display the final CPM  (Characters Per Minute ) 
+(e.g., 𝐶𝑃𝑀 =𝐶𝑜𝑟𝑟𝑒𝑐𝑡
+𝐸𝑙𝑎𝑝𝑠𝑒𝑑  𝑡𝑖𝑚𝑒 (𝑠𝑒𝑐𝑜𝑛𝑑𝑠 )∗60) 5% 
+ 

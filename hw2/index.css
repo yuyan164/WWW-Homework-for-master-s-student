@@ -1,0 +1,459 @@
+/* =========================================================================
+   【Spec 1】The layout of the page (整體版面配置與顏色變數定義)
+   在這裡定義深色的現代風格，不特別受限 CSS 發揮
+   ========================================================================= */
+:root {
+    --bg-color: #0f172a;
+    --panel-bg: #1e293b;
+    --border-color: #334155;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    
+    --primary: #3b82f6;
+    --primary-hover: #2563eb;
+    --danger: #ef4444;
+    --danger-hover: #dc2626;
+    --success: #10b981;
+    
+    /* 鍵盤專用色彩 */
+    --key-bg: #334155;
+    --key-shadow: #0f172a;
+    --key-active: #475569;
+    --key-correct: #10b981;
+    --key-wrong: #ef4444;
+    
+    --font-sans: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 1100px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* =========================================================================
+   【Spec 2.13】Scoreboard and elapsed time (記分板與經過時間的排版樣式)
+   ========================================================================= */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--panel-bg);
+    padding: 1.5rem 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-color);
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.scoreboard {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.stat-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--bg-color);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    min-width: 80px;
+    border: 1px solid var(--border-color);
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.stat-value {
+    font-family: var(--font-mono);
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.correct-box .stat-value { color: var(--success); }
+.error-box .stat-value { color: var(--danger); }
+
+/* Main Content Area */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* =========================================================================
+   【Spec 2.1】A character/text display area (字元/文章文字顯示的中央區域)
+   ========================================================================= */
+.display-container {
+    background: var(--panel-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    min-height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    position: relative;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.display-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.target-char {
+    font-family: var(--font-mono);
+    font-size: 8rem;
+    font-weight: 700;
+    color: var(--primary);
+    text-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+/* =========================================================================
+   【Spec 2.12】Article mode Text Interface (文章模式的互動顯示畫面)
+   - Highlight current target char (提示當前輸入字元)
+   ========================================================================= */
+.article-display-area {
+    font-family: var(--font-mono);
+    font-size: 1.5rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    text-align: left;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.article-char {
+    display: inline-block;
+}
+
+.article-char.future {
+    color: var(--text-secondary); /* 未打出的字 */
+}
+
+.article-char.correct {
+    color: var(--success); /* 正確敲擊的字為綠色 */
+}
+
+.article-char.incorrect {
+    color: var(--danger); /* 錯誤敲擊的字為紅色並有底線提示 */
+    text-decoration: underline;
+    text-decoration-color: var(--danger);
+}
+
+.article-char.current {
+    /* 【Spec 2.12】Highlight the current target character with a blue underline or distinctive background color */
+    color: var(--text-primary);
+    background-color: rgba(59, 130, 246, 0.4);
+    border-bottom: 3px solid var(--primary);
+}
+
+/* =========================================================================
+   一般共用按鈕樣式 (對應各種如 Start, Reset 等按鈕)
+   ========================================================================= */
+.in-game-actions {
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    outline: none;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: white;
+}
+.btn-primary:hover { background-color: var(--primary-hover); }
+
+.btn-secondary {
+    background-color: var(--key-bg);
+    color: var(--text-primary);
+}
+.btn-secondary:hover { background-color: var(--key-active); }
+
+.btn-danger {
+    background-color: var(--danger);
+    color: white;
+}
+.btn-danger:hover { background-color: var(--danger-hover); }
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+.btn-outline:hover { background-color: var(--key-bg); }
+
+.full-width { width: 100%; justify-content: center; }
+
+/* =========================================================================
+   【Spec 2.2 - 2.8】Settings / Controls Area (包含模式選擇與計時器區域)
+   ========================================================================= */
+.controls-panel {
+    background: var(--panel-bg);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: space-between;
+    transition: opacity 0.3s, visibility 0.3s, height 0.3s;
+}
+
+/* 【Spec 2.8】Settings buttons below the keyboard must be hidden (開始或提早結束時需隱藏控制區) */
+.controls-panel.hidden {
+    opacity: 0;
+    visibility: hidden;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.control-group h3 {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+}
+
+.radio-group {
+    display: flex;
+    gap: 1rem;
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+}
+
+.radio-group input[type="radio"] {
+    accent-color: var(--primary);
+}
+
+.timer-controls {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+/* 【Spec 2.5】A custom time input field */
+.input-number {
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 0.7rem;
+    border-radius: 0.5rem;
+    font-family: var(--font-mono);
+    width: 100px;
+    outline: none;
+}
+.input-number:focus { border-color: var(--primary); }
+
+.main-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-end;
+}
+
+/* =========================================================================
+   【Spec 2.9】A virtual keyboard display (虛擬鍵盤區域)
+   ========================================================================= */
+.keyboard {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+    background: var(--panel-bg);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border: 1px solid var(--border-color);
+}
+
+.keyboard-row {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.key {
+    background-color: var(--key-bg);
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 1.2rem;
+    font-weight: 600;
+    min-width: 3rem;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5rem;
+    border: none;
+    border-bottom: 3px solid var(--key-shadow);
+    transition: all 0.1s;
+    user-select: none;
+}
+
+.key-wide { min-width: 4.5rem; font-size: 0.9rem; }
+.key-space { min-width: 20rem; }
+
+.key.active, .key:active {
+    transform: translateY(3px);
+    border-bottom-width: 0px;
+    background-color: var(--key-active);
+}
+
+/* 【Spec 2.9】Visual feedback: Keys change color to green */
+.key.correct {
+    background-color: var(--key-correct);
+    color: white;
+}
+
+/* 將錯字的反饋加上紅色與震動效果 */
+.key.wrong {
+    background-color: var(--key-wrong);
+    color: white;
+    animation: shake 0.2s ease-in-out;
+}
+
+/* =========================================================================
+   【Spec 2.14】Result screen (滿時或提早結束的結果結算畫面)
+   ========================================================================= */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal {
+    background: var(--panel-bg);
+    border: 1px solid var(--border-color);
+    padding: 2.5rem;
+    border-radius: 1rem;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    transform: translateY(0);
+    animation: modalIn 0.3s ease-out;
+}
+
+.modal-title {
+    font-size: 1.5rem;
+    color: var(--primary);
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.result-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.result-box {
+    text-align: center;
+    background: var(--bg-color);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color);
+}
+
+.result-label {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.result-value {
+    font-family: var(--font-mono);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.error-text { color: var(--danger); }
+
+/* 動畫效果定義 */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+@keyframes modalIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 美化卷軸 */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-color); border-radius: 4px; }
+::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--key-active); }

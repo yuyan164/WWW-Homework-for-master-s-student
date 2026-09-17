@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Typing Trainer</title>
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header & Stats Area -->
+        <header class="header">
+            <div class="logo">
+                <h1>Typing Trainer</h1>
+            </div>
+            
+            <div class="scoreboard">
+                <div class="stat-box">
+                    <span class="stat-label">Time</span>
+                    <span class="stat-value" id="elapsed-time">0s</span>
+                </div>
+                <div class="stat-box correct-box">
+                    <span class="stat-label">Correct</span>
+                    <span class="stat-value" id="correct-count">0</span>
+                </div>
+                <div class="stat-box error-box">
+                    <span class="stat-label">Errors</span>
+                    <span class="stat-value" id="error-count">0</span>
+                </div>
+            </div>
+
+            <div class="upload-section">
+                <label for="article-upload" class="btn btn-outline" id="load-json-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                    Load Article JSON
+                </label>
+                <input type="file" id="article-upload" accept=".json" hidden>
+            </div>
+        </header>
+
+        <!-- Main Display Area -->
+        <main class="main-content">
+            <div class="display-container" id="display-container">
+                <div class="display-area" id="display-area">
+                    <span class="target-char" id="target-char">A</span>
+                </div>
+                <div class="article-display-area hidden" id="article-display-area">
+                    <!-- Text for Article mode goes here -->
+                </div>
+            </div>
+
+            <!-- In-game Action Buttons -->
+            <div class="in-game-actions">
+                <button id="end-early-btn" class="btn btn-danger hidden">End Early</button>
+            </div>
+
+            <!-- Virtual Keyboard -->
+            <div class="keyboard" id="virtual-keyboard"></div>
+
+            <!-- Settings / Controls Area -->
+            <div class="controls-panel" id="controls-panel">
+                <div class="control-group">
+                    <h3>Case Selection</h3>
+                    <div class="radio-group">
+                        <label><input type="radio" name="case" value="uppercase" checked> <span>Uppercase</span></label>
+                        <label><input type="radio" name="case" value="lowercase"> <span>Lowercase</span></label>
+                        <label><input type="radio" name="case" value="both"> <span>Both</span></label>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <h3>Practice Mode</h3>
+                    <div class="radio-group">
+                        <label><input type="radio" name="mode" value="sequential" checked> <span>Sequential</span></label>
+                        <label><input type="radio" name="mode" value="randomized"> <span>Randomized</span></label>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <h3>Quick-set Timer</h3>
+                    <div class="timer-controls">
+                        <button class="btn btn-outline quick-time" data-time="30">30s</button>
+                        <button class="btn btn-outline quick-time" data-time="60">60s</button>
+                        <button class="btn btn-outline quick-time" data-time="90">90s</button>
+                        <button class="btn btn-outline quick-time" data-time="120">120s</button>
+                        <input type="number" id="custom-time" class="input-number" placeholder="Custom (s)" min="1">
+                    </div>
+                </div>
+
+                <div class="main-actions">
+                    <button id="reset-btn" class="btn btn-secondary">Reset</button>
+                    <button id="start-btn" class="btn btn-primary">Start Practice</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Results Modal -->
+    <div class="modal-overlay hidden" id="result-modal">
+        <div class="modal">
+            <h2 class="modal-title">Practice Results</h2>
+            <div class="result-stats">
+                <div class="result-box">
+                    <span class="result-label">Accuracy</span>
+                    <span class="result-value" id="res-accuracy">0%</span>
+                </div>
+                <div class="result-box">
+                    <span class="result-label">CPM</span>
+                    <span class="result-value" id="res-cpm">0</span>
+                </div>
+                <div class="result-box">
+                    <span class="result-label">Correct</span>
+                    <span class="result-value" id="res-correct">0</span>
+                </div>
+                <div class="result-box">
+                    <span class="result-label">Errors</span>
+                    <span class="result-value error-text" id="res-error">0</span>
+                </div>
+            </div>
+            <button id="close-modal-btn" class="btn btn-primary full-width">Close & Retry</button>
+        </div>
+    </div>
+
+    <!-- Audio Elements -->
+    <audio id="sound-correct" src="correct.mp3" preload="auto"></audio>
+    <audio id="sound-wrong" src="wrong.mp3" preload="auto"></audio>
+
+    <script src="index.js"></script>
+</body>
+</html>
